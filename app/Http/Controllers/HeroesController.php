@@ -38,15 +38,29 @@ class HeroesController extends Controller{
                 'fist'  => 'false'
             ]);
 
-            //$data->hasMorePagesWhen(true);
-            
             if($lastPage > $page || $page==1)
                 $data->hasMorePagesWhen(true);
             
-            //dd($data,$lastPage,$page);
-             
             return view('grid')->with('items',$data);
+        }catch (GuzzleException $e){
+            //buy a beer
+            dd($e);
+        }
+    }
+
+    public function hero(Request $request, $hero){
+        try{
+            $call       = $this->client->get('http://35.162.46.100/superheroes');
+            $response   = json_decode($call->getBody()->getContents(), true);
+            $data       = null;
+            foreach ($response as $key => $heroData) {
+                if(strtolower(str_replace(' ', '_', $heroData['name']))===$hero){
+                    $data= ['hero'=>$heroData];
+                    break;
+                }
+            }
             
+            return view('hero')->with($data);
         }catch (GuzzleException $e){
             //buy a beer
             dd($e);

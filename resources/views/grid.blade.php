@@ -5,9 +5,11 @@
             
             @foreach ($items as $hero)
                 <article class="col">
-                    <figure>
-                        <img src="{{$hero['picture']}}" />
-                    </figure>
+                    <a href="{{ url('hero/'.strtolower(str_replace(' ', '_', $hero['name']))) }}">
+                        <figure>
+                            <img src="{{$hero['picture']}}" />
+                        </figure>
+                    </a>
                     <div class="info">
                         <h2>{{$hero['name']}}</h2>
                         <p>{{$hero['info']}}</p>

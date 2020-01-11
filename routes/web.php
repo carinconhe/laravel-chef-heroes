@@ -12,4 +12,5 @@
 */
 
 Route::get('/{page?}', 'HeroesController@grid')->name('index');
+Route::get('/hero/{name}', 'HeroesController@hero')->name('hero');
 Route::post('ajaxRequest', 'HeroesController@ajaxRequestPost')->name('ajaxRequest.post');
