@@ -1,0 +1,21 @@
+article.col {
+    width: 33%;
+}
+
+article.col figure img {
+    width: 200px;
+    border-radius: 50%;
+}
+
+article.col .likes img {
+    width: 24px;
+    height: auto;
+}
+
+article.col .likes {
+    cursor: pointer;
+}
+
+article.col .likes>svg {
+    fill: orange;
+}

@@ -11,6 +11,5 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/{page?}', 'HeroesController@grid')->name('index');
+Route::post('ajaxRequest', 'HeroesController@ajaxRequestPost')->name('ajaxRequest.post');
