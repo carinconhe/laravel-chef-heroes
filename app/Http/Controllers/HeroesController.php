@@ -26,7 +26,8 @@ class HeroesController extends Controller{
             $call       = $this->client->get('http://35.162.46.100/superheroes');
             $response   = json_decode($call->getBody()->getContents(), true);
             $limit      = 9;
-            
+            if(!is_int($page))
+                $page = 1;
             $offset     = ($page-1)*$limit;
             $results    = array_slice($response,$offset,$limit);
             $lastPage   = intval(ceil(count($response)/$limit));
@@ -65,5 +66,9 @@ class HeroesController extends Controller{
             //buy a beer
             dd($e);
         }
+    }
+
+    public function ranking(Request $request){
+        return view('ranking');
     }
 }

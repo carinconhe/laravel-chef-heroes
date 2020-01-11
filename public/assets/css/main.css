@@ -12,7 +12,8 @@ article.col .likes img {
     height: auto;
 }
 
-article.col .likes {
+article.col .like,
+article.col .dislike {
     cursor: pointer;
 }
 
