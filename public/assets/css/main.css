@@ -3,8 +3,26 @@ article.col {
 }
 
 article.col figure img {
-    width: 200px;
+    height: 200px;
     border-radius: 50%;
+    width: auto;
+}
+
+article.col h2 {
+    font-size: 1rem;
+    font-weight: bolder;
+}
+
+article.col p {
+    font-size: 0.9rem;
+    border-bottom: 1px solid #6c757d;
+    min-height: 100px;
+    margin-bottom: 5px;
+}
+
+article.col span {
+    font-size: 0.8rem;
+    color: #6c757d;
 }
 
 article.col .likes img {

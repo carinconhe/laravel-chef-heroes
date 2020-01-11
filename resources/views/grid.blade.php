@@ -14,6 +14,7 @@
                     <div class="info">
                         <h2>{{$hero['name']}}</h2>
                         <p>{{$hero['info']}}</p>
+                        <span>{{$hero['publisher']}}</span>
                         <div class="likes">
                             <img  class="like" data-id="{!! strtolower(str_replace(' ', '_', $hero['name'])) !!}" src="{{ asset('assets/images/like.svg') }}">
                             <img  class="dislike" data-id="{!! strtolower(str_replace(' ', '_', $hero['name'])) !!}" src="{{ asset('assets/images/dislike.svg') }}">                            
