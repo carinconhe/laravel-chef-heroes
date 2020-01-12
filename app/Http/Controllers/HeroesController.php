@@ -76,6 +76,11 @@ class HeroesController extends Controller{
         return view('ranking');
     }
 
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
     public function ajaxRequestPost(){
         $dataStorage    = request()->data;
         $success        = true;
@@ -84,11 +89,14 @@ class HeroesController extends Controller{
             $data   = [];
             foreach ($heroes as $key => $hero) {
                 foreach($dataStorage as $element){
-                    if(strtolower(str_replace(' ', '_', $hero['name']))===$element['id']){
+                    if(strtolower(str_replace(' ', '_', $hero['name']))===$element['id'] && $element['value']!= 0){
+                        $hero['total'] = $element['value'];
                         array_push($data,$hero);
                     }
                 }
             }
+            $columns = array_column($data, 'total');
+            array_multisort($columns, SORT_DESC, $data);
             $result = ['data'=>$data];
         }else{
             $result = ['data'=>0];

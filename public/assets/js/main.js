@@ -17,7 +17,7 @@ $(document).ready(function() {
     $('.dislike').on('click', function(e) {
         e.preventDefault();
         let $data = $(this).data('id')
-        vote($data, 0, window.fingerPrint);
+        vote($data, -1, window.fingerPrint);
     });
 
     /**
@@ -42,6 +42,10 @@ $(document).ready(function() {
 
         if (storage === null) {
             localStorage.setItem('chef-data', JSON.stringify([{ 'id': $data, 'value': $action, 'user': $user }]))
+            if ($action == -1)
+                alert('Mueres siendo un héroe o vives lo suficiente para convertirte en un villano.');
+            else
+                alert('¿No te lo ha dicho nadie? Soy el más fuerte que existe.');
         } else {
             var exist = false;
             $.each(storage, function(i, element) {
@@ -51,19 +55,16 @@ $(document).ready(function() {
             });
             if (exist == false) {
                 storage.push({ 'id': $data, 'value': $action, 'user': $user })
-                alert('Gracias por votar');
             } else {
                 $.each(storage, function(i, element) {
-                    if (element.id === $data && element.value != $action) {
-                        storage[i] = { 'id': $data, 'value': $action, 'user': $user }
-                        alert('Usted acaba de cambiar de opinion que mal!!!');
-                    } else if (element.id === $data) {
-                        let result = (element.value == 0) ? ' Dislike' : 'Like';
-                        alert("Amigo usted ya dio un " + result + " por " + element.id);
-                    }
+                    if (element.id === $data)
+                        storage[i] = { 'id': $data, 'value': (element.value + parseInt($action)), 'user': $user }
                 });
             }
-
+            if ($action == -1)
+                alert('Mueres siendo un héroe o vives lo suficiente para verte convertirte en un villano.');
+            else
+                alert('¿No te lo ha dicho nadie? Soy el más fuerte que existe.');
             localStorage.setItem('chef-data', JSON.stringify(storage))
         }
         existData();
@@ -83,17 +84,40 @@ $(document).ready(function() {
                             let data = response.results.data;
                             let htmlString = '';
                             $.each(data, function(i, element) {
-                                htmlString += "<article class='col'>";
-                                htmlString += "<figure>";
-                                htmlString += "<img src='" + element.picture + "' />";
+                                htmlString += "<article class='col-lg-4 col-md-6 col-12'>";
+                                htmlString += "<div class='content-item p-3'>"
+                                htmlString += "<figure class='rounded-circle'>";
+                                htmlString += "<img class='img-fluid' src='" + element.picture + "' />";
                                 htmlString += "</figure>";
                                 htmlString += "<div class='info'>";
                                 htmlString += "<h2>" + element.name + "</h2>";
-                                htmlString += "<p>" + element.info + "</p>";
+                                htmlString += "<div class='d-flex align-items-center justify-content-center'> <img class='star img-fluid' src='../assets/images/star-america.png'> <span class='h1 mb-0 mx-2'>" + element.total + "</span></div>";
+                                htmlString += "</div>";
                                 htmlString += "</div>";
                                 htmlString += "</article>";
                             });
                             $('#ranking-data').html(htmlString);
+                            $('.content-ranking').slick({
+                                infinite: true,
+                                slidesToShow: 3,
+                                slidesToScroll: 3,
+                                arrows: true,
+                                responsive: [{
+                                        breakpoint: 767.9,
+                                        settings: {
+                                            slidesToShow: 2,
+                                            slidesToScroll: 2
+                                        }
+                                    },
+                                    {
+                                        breakpoint: 565,
+                                        settings: {
+                                            slidesToShow: 1,
+                                            slidesToScroll: 1
+                                        }
+                                    }
+                                ]
+                            });
                         } else {
                             alert('Ocurrio algo de locos intente nuevamente');
                         }

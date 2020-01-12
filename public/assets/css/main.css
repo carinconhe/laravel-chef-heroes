@@ -1,11 +1,12 @@
-article.col {
-    width: 33%;
+article .content-item {
+    display: grid;
+    grid-template-columns: 130px auto;
 }
 
-article.col figure img {
-    height: 200px;
-    border-radius: 50%;
-    width: auto;
+article .content-item figure {
+    height: 100px;
+    width: 100px;
+    overflow: hidden;
 }
 
 article.col h2 {
@@ -30,11 +31,82 @@ article.col .likes img {
     height: auto;
 }
 
-article.col .like,
-article.col .dislike {
+article .content-item .info .like,
+article .content-item .info .dislike {
     cursor: pointer;
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    margin: 5px;
 }
 
 article.col .likes>svg {
     fill: orange;
+}
+
+.card-hero.single .content-item {
+    grid-template-columns: 40% 60%;
+    grid-gap: 15px;
+}
+
+.card-hero.single .content-item figure {
+    width: auto;
+    height: auto;
+}
+
+.card-hero.single .content-item figure img {
+    object-fit: cover;
+    min-height: 300px;
+    max-height: 400px;
+    width: 100%;
+}
+
+.content-ranking article .content-item {
+    grid-template-columns: 100%;
+    justify-items: center;
+    text-align: center;
+    background-color: #e9eaeb;
+}
+
+.content-ranking article .content-item .info .star {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+}
+
+.slick-prev {
+    left: 20px;
+}
+
+.slick-next {
+    right: 20px;
+}
+
+.slick-prev,
+.slick-next {
+    z-index: 4;
+}
+
+.slick-prev:before,
+.slick-next:before {
+    color: #343a40;
+}
+
+@media only screen and (max-width: 767.9px) {
+    article .content-item a figure {
+        height: 120px;
+        width: 120px;
+    }
+    article .content-item {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    }
+    .card-hero.single .content-item {
+        border-bottom: none;
+    }
+}
+
+@media only screen and (max-width: 567.7px) {
+    .card-hero.single .content-item {
+        grid-template-columns: 100%;
+    }
 }
