@@ -1,9 +1,12 @@
 @extends('layouts.default')
 @section('content')
     @if(!empty($hero))
-    <div class="navbar-header d-flex justify-content-between align-items-center bg-dark p-3">
+    <div class="navbar-header d-flex justify-content-between align-items-center bg-dark mb-4 p-3">
         <h1 class="text-white">SUPER HEROE</h1>
-        <a class="btn btn-primary btn-sm" href="{{ url()->previous() }}">Back</a>
+        <div class="d-flex">
+            <div id="b-ranking" class="d-none"><a class="btn btn-danger mx-3 btn-sm" href="{{ url('ranking/data') }}">Ranking</a></div>
+            <a class="btn btn-primary btn-sm" href="{{ url('/') }}">Back</a>
+        </div>
     </div>
     <div class="container">
         <article class="card-hero single">

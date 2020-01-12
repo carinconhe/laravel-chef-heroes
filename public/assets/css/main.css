@@ -92,6 +92,10 @@ article.col .likes>svg {
     color: #343a40;
 }
 
+.pagination {
+    justify-content: center;
+}
+
 @media only screen and (max-width: 767.9px) {
     article .content-item a figure {
         height: 120px;

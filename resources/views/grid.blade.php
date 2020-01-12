@@ -1,7 +1,7 @@
 @extends('layouts.default')
 @section('content')
     @if(count($items))
-    <div class="navbar-header d-flex justify-content-between align-items-center bg-dark p-3">
+    <div class="navbar-header d-flex justify-content-between align-items-center bg-dark mb-4 p-3">
         <h1 class="text-white">SUPER HEROES</h1>
         <div id="b-ranking" class="d-none"><a class="btn btn-primary btn-sm" href="{{ url('ranking/data') }}">Ranking</a></div>
     </div>
@@ -31,6 +31,9 @@
                 </article>
             @endforeach
         </div>
+        <div class="justify-content-between align-items-center">
         {{ $items->links() }}
+        </div>
+        
     @endif
 @stop
